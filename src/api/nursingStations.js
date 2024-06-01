@@ -1,4 +1,4 @@
-import nursingStation1 from '../data/nursingStations.json';
+import nursingStations from '../data/nursingStations.json';
 
 import postalData from '../data/postalData.json';
 
@@ -35,11 +35,6 @@ export const fetchNursingStations = (address, selectedConditions) => {
 
   const [lat, lon] = coordinates;
   console.log(`検索された住所の座標: ${lat}, ${lon}`);
-
-  // 全てのステーションデータを結合
-  const nursingStations = [
-    ...nursingStation1
-  ]
 
   const filteredStations = nursingStations
     .filter(station => {
