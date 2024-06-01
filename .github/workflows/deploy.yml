@@ -41,13 +41,18 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-artifact@v4  # 最新バージョンに更新
         with:
-          name: github-pages
+          name: github-pages  # アーティファクトの名前を明示的に指定
           path: './build'
 
   deploy:
     runs-on: ubuntu-latest
     needs: build
     steps:
+      - name: Download artifact  # アーティファクトをダウンロードするステップを追加
+        uses: actions/download-artifact@v4  # 最新バージョンに更新
+        with:
+          name: github-pages  # アップロード時と同じ名前を使用
+
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v2  # ここはNode.js 20対応バージョンがリリースされるまで待つ必要があります
