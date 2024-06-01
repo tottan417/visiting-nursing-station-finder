@@ -35,9 +35,13 @@ jobs:
         env:
           PUBLIC_URL: /visiting-nursing-station-finder
 
+      - name: Verify build contents  # 新規追加: ビルドディレクトリの内容を確認するステップ
+        run: ls -la build
+
       - name: Upload artifact
         uses: actions/upload-artifact@v4  # 最新バージョンに更新
         with:
+          name: github-pages
           path: './build'
 
   deploy:
@@ -46,4 +50,4 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v2  # Node.js 20 を使用するバージョンがリリースされているか確認してください
+        uses: actions/deploy-pages@v2  # ここはNode.js 20対応バージョンがリリースされるまで待つ必要があります
