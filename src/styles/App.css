@@ -1,0 +1,10 @@
+/* Basic styles for the app */
+.App {
+  text-align: center;
+}
+
+ul, li {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
