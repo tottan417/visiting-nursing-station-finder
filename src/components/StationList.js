@@ -1,7 +1,7 @@
 import React from 'react';
 
-const StationList = ({ stations }) => {
-  if (stations.length === 0) {
+const StationList = ({ filterStations }) => {
+  if (filterStations.length === 0) {
     return <p>該当する看護ステーションがありません。</p>;
   }
 
@@ -9,7 +9,7 @@ const StationList = ({ stations }) => {
     <div>
       <h2>看護ステーション一覧</h2>
       <ul>
-        {stations.map((station, index) => (
+        {filterStations.map((station, index) => (
           <li key={index}>
             <div class="box">
             <h3>{station["事業所名称(開設主体)"]}</h3>

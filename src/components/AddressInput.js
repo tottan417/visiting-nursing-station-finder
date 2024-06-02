@@ -1,8 +1,8 @@
 import React from 'react';
 
-const AddressInput = ({ tempAddress, setTempAddress }) => {
+const AddressInput = ({ address, setAddress }) => {
   const handleChange = (e) => {
-    setTempAddress(e.target.value);
+    setAddress(e.target.value);
   };
 
   return (
@@ -10,7 +10,7 @@ const AddressInput = ({ tempAddress, setTempAddress }) => {
       <label>住所: </label>
       <input
         type="text"
-        value={tempAddress}
+        value={address}
         onChange={handleChange}
       />
     </div>

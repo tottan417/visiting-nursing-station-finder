@@ -6,7 +6,7 @@ const App = () => {
   return (
     <div className="App">
       <HomePage />
-      <p>&copy; 2024 tottan</p>
+      <p>&copy; 2024 Toshinari Izaki</p>
     </div>
   );
 };

@@ -7,7 +7,7 @@ const DistanceInput = ({ distance, setDistance }) => {
 
   return (
     <div>
-      <label>表示距離: </label>
+      <label>表示距離(km): </label>
       <input
         type="text"
         value={distance}

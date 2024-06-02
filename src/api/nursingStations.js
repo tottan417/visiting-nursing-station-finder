@@ -17,7 +17,7 @@ const getCoordinatesFromPostalCode = (postalCode) => {
   return postalData[postalCode];
 };
 
-export const fetchNursingStations = (address, distance, selectedConditions) => {
+export const fetchNursingStations = (address, distance) => {
   const postalCodeMatch = address.match(/\d{3}-?\d{4}/); // 郵便番号を抽出（ハイフンの有無に対応）
   if (!postalCodeMatch) {
     console.log("郵便番号が見つかりません");
@@ -36,10 +36,6 @@ export const fetchNursingStations = (address, distance, selectedConditions) => {
   console.log(`検索された住所の座標: ${lat}, ${lon}`);
 
   const filteredStations = nursingStations
-    .filter(station => {
-      if (selectedConditions.length === 0) return true; // 条件がない場合はすべてのステーションを返す
-      return selectedConditions.every(cond => station[cond] === 'o' || station[cond] === '特' || station[cond] === 'o' || station[cond] === '特');
-    })
     .map(station => {
       const stationPostalCode = station["郵便番号"].replace('-', '');
       const stationCoordinates = getCoordinatesFromPostalCode(stationPostalCode);
@@ -57,3 +53,14 @@ export const fetchNursingStations = (address, distance, selectedConditions) => {
   console.log("フィルタリング後のステーション: ", filteredStations);
   return filteredStations;
 };
+
+export const filterNursingStations = (stations, distance, selectedConditions) => {
+  const filteredStations = stations
+    .filter(station => {
+      if (selectedConditions.length === 0) return true; // 条件がない場合はすべてのステーションを返す
+      return selectedConditions.every(cond => station[cond] === 'o' || station[cond] === '特' || station[cond] === 'Ⅰ' || station[cond] === 'Ⅱ');
+    })
+    .filter(station => station.distance <= distance)
+
+  return filteredStations;
+}
