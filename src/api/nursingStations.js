@@ -1,5 +1,4 @@
 import nursingStations from '../data/nursingStations.json';
-
 import postalData from '../data/postalData.json';
 
 const calculateDistance = (lat1, lon1, lat2, lon2) => {
@@ -18,7 +17,7 @@ const getCoordinatesFromPostalCode = (postalCode) => {
   return postalData[postalCode];
 };
 
-export const fetchNursingStations = (address, selectedConditions) => {
+export const fetchNursingStations = (address, distance, selectedConditions) => {
   const postalCodeMatch = address.match(/\d{3}-?\d{4}/); // 郵便番号を抽出（ハイフンの有無に対応）
   if (!postalCodeMatch) {
     console.log("郵便番号が見つかりません");
@@ -52,7 +51,7 @@ export const fetchNursingStations = (address, selectedConditions) => {
       const distance = calculateDistance(lat, lon, stationLat, stationLon);
       return { ...station, distance };
     })
-    .filter(station => station !== null)
+    .filter(station => station !== null && station.distance <= distance)
     .sort((a, b) => a.distance - b.distance);
 
   console.log("フィルタリング後のステーション: ", filteredStations);
