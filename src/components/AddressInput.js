@@ -12,6 +12,7 @@ const AddressInput = ({ address, setAddress }) => {
         type="text"
         value={address}
         onChange={handleChange}
+        placeholder='000-0000'
       />
     </div>
   );

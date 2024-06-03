@@ -58,7 +58,7 @@ export const filterNursingStations = (stations, distance, selectedConditions) =>
   const filteredStations = stations
     .filter(station => {
       if (selectedConditions.length === 0) return true; // 条件がない場合はすべてのステーションを返す
-      return selectedConditions.every(cond => station[cond] === 'o' || station[cond] === '特' || station[cond] === 'Ⅰ' || station[cond] === 'Ⅱ');
+      return selectedConditions.every(cond => station[cond] !== 'x');
     })
     .filter(station => station.distance <= distance)
 
